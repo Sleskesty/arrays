@@ -1,36 +1,50 @@
 import Senators from './data/senators'
-
-export const republicans = () => {
-  return REPLACE_ME_WITH_CODE
+const filterByParty = (party) => {
+  return Senators.filter(x => x.party ==party)
 }
+const filterByGender = (gender) => {
+  return Senators.filter(y => y.person.gender ==gender)
+}
+const filterByState = (state) => {
+return Senators.filter(z => z.state == state)
+}
+export const republicans = () => {
+ return filterByParty("Republican")
+
+  }
+
 
 export const democrats = () => {
-  return REPLACE_ME_WITH_CODE
+  return filterByParty("Democrat")
 }
 
 export const independents = () => {
-  return REPLACE_ME_WITH_CODE
+  return filterByParty("Independent")
 }
 
 export const males = () => {
-  return REPLACE_ME_WITH_CODE
+  return filterByGender("male")
 }
 
 export const females = () => {
-  return REPLACE_ME_WITH_CODE
+  return filterByGender("female")
 }
 
 export const byState = (state = 'UT') => {
-  return REPLACE_ME_WITH_CODE
+  return filterByState("UT")
 }
 
 export const mapping = () => {
-  return REPLACE_ME_WITH_CODE
-}
+  var map1 = Senators.map(Senators => ({firstName: Senators.firstName, lastName: Senators.LastName, party: Senators.party, gender: Senators.gender}))
+ 
+  return map1
+} 
 
-export const birthplaceSeniorSenator = () => {
-  return REPLACE_ME_WITH_CODE
-}
+export const birthplaceSeniorSenator = (state= 'UT') => {
+
+  return Senators.reduce((prior, sen) => (sen.senator_rank =='senior' && sen.state == "UT") ? sen : prior) 
+  }
+
 
 
 const REPLACE_ME_WITH_CODE = false
